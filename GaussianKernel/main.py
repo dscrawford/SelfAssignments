@@ -1,3 +1,4 @@
+import pickle
 import warnings
 
 import numpy as np
@@ -163,4 +164,9 @@ x_min, x_max = X[:, 0].min(), X[:, 0].max()
 plt.plot(np.linspace(0, 100), np.linspace(0, 100) * linear_fun.coefficients[0] + linear_fun.bias, label="True function",
          linestyle="dashed", color="white")
 plt.legend()
+
+print("Saving visualization plot.png")
 plt.savefig("plot.png", dpi=300)
+print("Saving model to model.pkl")
+with open("model.pkl", "wb") as f:
+    pickle.dump(model, f)

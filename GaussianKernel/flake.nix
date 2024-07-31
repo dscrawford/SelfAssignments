@@ -19,7 +19,7 @@
         ];
         pythonEnv = pkgs.python3.withPackages pythonPackages;
         # Define a package that includes `main.py`
-        myPackage = pkgs.stdenv.mkDerivation {
+        myPackage = pkgs.stdenv.mkDerivation rec {
           pname = "gaussian-kernel-test";
           version = "1.0";
           
@@ -28,9 +28,10 @@
           buildInputs = [ pythonEnv pkgs.bash ];
 
           installPhase = ''
-            mkdir -p $out/bin
-            cp ${myPackage.src}/main.py $out/bin/main.py
-            chmod +x $out/bin/main.py
+            mkdir -p $out
+            python ${src}/main.py
+            cp ${src}/plot.png $out/plot.png
+            cp ${src}/model.pkl $out/model.pkl
           '';
 
           meta = with pkgs.lib; {
@@ -45,11 +46,6 @@
         
         devShell = pkgs.mkShell {
           buildInputs = [ pythonEnv ];
-        };
-        
-        defaultApp = {
-          type = "app";
-          program = "${pythonEnv}/bin/python ${myPackage}/bin/main.py";
         };
       });
 }

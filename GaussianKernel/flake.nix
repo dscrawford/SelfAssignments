@@ -30,8 +30,7 @@
           installPhase = ''
             mkdir -p $out
             python ${src}/main.py
-            cp ${src}/plot.png $out/plot.png
-            cp ${src}/model.pkl $out/model.pkl
+            cp -t $out plot.png model.pkl
           '';
 
           meta = with pkgs.lib; {

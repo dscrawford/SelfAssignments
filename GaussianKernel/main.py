@@ -165,8 +165,8 @@ plt.plot(np.linspace(0, 100), np.linspace(0, 100) * linear_fun.coefficients[0] +
          linestyle="dashed", color="white")
 plt.legend()
 
-print("Saving visualization plot.png")
-plt.savefig("plot.png", dpi=300)
 print("Saving model to model.pkl")
 with open("model.pkl", "wb") as f:
     pickle.dump(model, f)
+print("Saving visualization plot.png")
+plt.savefig("plot.png", dpi=300)

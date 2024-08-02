@@ -1,2 +1,3 @@
 #!/bin/sh
-exec nix develop /home/daniel/Documents/Workspace/SelfAssignments/GaussianKernel --command python "$@"
+SCRIPT_DIR=$(dirname "$(realpath "$0")")
+exec nix develop $SCRIPT_DIR --command python "$@"
